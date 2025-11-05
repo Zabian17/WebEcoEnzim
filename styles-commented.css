@@ -1,0 +1,750 @@
+/* ============================================
+   WEBSITE EDUKASI ECO ENZIM
+   File: styles.css
+   Deskripsi: File CSS untuk styling seluruh website
+
+   PENJELASAN UNTUK PEMULA:
+   - CSS = Cascading Style Sheets (untuk mempercantik tampilan)
+   - Selector = Nama class/tag yang akan diberi style
+   - Property = Apa yang mau diubah (warna, ukuran, dll)
+   - Value = Nilai dari property tersebut
+
+   Contoh:
+   .nama-class {
+     color: red;     <- Property: color, Value: red
+     font-size: 16px; <- Property: font-size, Value: 16px
+   }
+   ============================================ */
+
+/* ==========================================
+   1. VARIABEL WARNA (COLOR VARIABLES)
+
+   PENJELASAN:
+   - :root = Tempat menyimpan variabel global
+   - --nama-variabel = Nama variabel kustom
+   - var(--nama-variabel) = Cara menggunakan variabel
+
+   KEUNTUNGAN:
+   - Gampang ubah warna di satu tempat
+   - Konsisten di seluruh website
+   - Mudah maintenance
+   ========================================== */
+:root {
+  /* Warna hijau utama - Dipakai untuk header, tombol, judul */
+  --primary-green: #1B5E20;
+
+  /* Warna hijau sekunder - Dipakai untuk aksen dan hover effect */
+  --secondary-green: #4CAF50;
+
+  /* Warna hijau tersier - Dipakai untuk highlight */
+  --tertiary-green: #8BC34A;
+
+  /* Background hijau muda - Dipakai untuk section alternatif */
+  --light-green-bg: #F1F8E9;
+
+  /* Warna teks gelap - Dipakai untuk teks utama */
+  --text-dark: #333333;
+
+  /* Warna teks terang - Dipakai untuk teks sekunder */
+  --text-light: #666666;
+
+  /* Warna putih */
+  --white: #FFFFFF;
+
+  /* Shadow (bayangan) ringan - Untuk card dan element yang melayang */
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Shadow lebih gelap - Untuk efek hover */
+  --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================
+   2. RESET & GLOBAL STYLES
+
+   PENJELASAN:
+   - * = Universal selector (semua element)
+   - margin: 0 = Hilangkan jarak luar default
+   - padding: 0 = Hilangkan jarak dalam default
+   - box-sizing: border-box = Ukuran sudah termasuk padding dan border
+   ========================================== */
+* {
+  margin: 0;          /* Reset margin ke 0 */
+  padding: 0;         /* Reset padding ke 0 */
+  box-sizing: border-box; /* Border dan padding masuk ke ukuran element */
+}
+
+/* Smooth scrolling - Efek scroll halus saat klik link */
+html {
+  scroll-behavior: smooth; /* Animasi smooth saat scroll */
+}
+
+/* Styling untuk seluruh body website */
+body {
+  /* Font family - Urutan dari kiri ke kanan (fallback) */
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;        /* Ukuran font default */
+  line-height: 1.6;       /* Jarak antar baris (1.6x tinggi font) */
+  color: var(--text-dark);/* Warna teks pakai variabel */
+  background-color: var(--white); /* Background putih */
+  overflow-x: hidden;     /* Sembunyikan scroll horizontal */
+}
+
+/* ==========================================
+   3. TYPOGRAPHY (PENGATURAN TEKS)
+
+   PENJELASAN:
+   - h1, h2, h3, dll = Heading (judul)
+   - clamp() = Ukuran responsif (min, preferred, max)
+   - rem = Relatif ke ukuran font root (1rem = 16px)
+   ========================================== */
+
+/* Styling untuk semua heading (h1 sampai h6) */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;       /* Ketebalan font (bold) */
+  color: var(--text-dark);/* Warna teks gelap */
+  margin-bottom: 1rem;    /* Jarak ke bawah 1rem (16px) */
+}
+
+/* H1 - Judul paling besar, responsive dengan clamp */
+h1 {
+  /* clamp(min, preferred, max) */
+  /* Minimum 2rem, ideal 5% dari viewport width, maksimum 3.5rem */
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* H2 - Judul besar kedua */
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* H3 - Judul sedang */
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Paragraf - Teks biasa */
+p {
+  margin-bottom: 1rem;    /* Jarak ke bawah */
+  color: var(--text-light);/* Warna teks abu */
+  line-height: 1.8;       /* Jarak baris lebih lebar untuk readability */
+}
+
+/* Link - Styling untuk semua link */
+a {
+  color: var(--primary-green); /* Warna hijau */
+  text-decoration: none;  /* Hilangkan garis bawah default */
+  transition: all 0.3s ease; /* Animasi smooth 0.3 detik */
+}
+
+/* Link saat di-hover (cursor di atas) */
+a:hover {
+  color: var(--secondary-green); /* Ubah warna jadi hijau terang */
+}
+
+/* ==========================================
+   4. BUTTONS (TOMBOL)
+
+   PENJELASAN:
+   - .btn = Class untuk tombol
+   - display: inline-block = Tombol di inline tapi bisa diatur ukuran
+   - padding = Jarak dalam (atas-bawah kiri-kanan)
+   - transition = Animasi perubahan
+   ========================================== */
+
+/* Styling tombol utama */
+.btn {
+  display: inline-block;  /* Tampil inline tapi bisa atur width/height */
+  padding: 12px 28px;     /* Jarak dalam: 12px atas-bawah, 28px kiri-kanan */
+  background-color: var(--primary-green); /* Background hijau */
+  color: var(--white);    /* Teks putih */
+  border: 2px solid var(--primary-green); /* Border hijau 2px */
+  border-radius: 6px;     /* Sudut melengkung 6px */
+  font-size: 1rem;        /* Ukuran font 16px */
+  font-weight: 600;       /* Ketebalan semi-bold */
+  cursor: pointer;        /* Cursor jadi tangan saat hover */
+  transition: all 0.3s ease; /* Animasi smooth untuk semua perubahan */
+  text-decoration: none;  /* Hilangkan underline jika link */
+}
+
+/* Tombol saat di-hover */
+.btn:hover {
+  background-color: var(--secondary-green); /* Background jadi hijau terang */
+  border-color: var(--secondary-green);     /* Border ikut berubah */
+  transform: translateY(-2px); /* Naik 2px ke atas */
+  box-shadow: var(--shadow-hover); /* Bayangan lebih gelap */
+}
+
+/* ==========================================
+   5. HEADER & NAVIGATION
+
+   PENJELASAN:
+   - position: sticky = Tetap di atas saat scroll
+   - z-index = Urutan layer (lebih tinggi = di depan)
+   - flexbox = Layout fleksibel untuk susunan element
+   ========================================== */
+
+/* Header - Bagian paling atas website */
+header {
+  background-color: var(--primary-green); /* Background hijau */
+  color: var(--white);    /* Teks putih */
+  padding: 1rem 0;        /* Padding atas-bawah 1rem */
+  position: sticky;       /* Tetap di atas saat scroll */
+  top: 0;                 /* Posisi stick di paling atas */
+  z-index: 1000;          /* Layer paling depan (nilai tinggi) */
+  box-shadow: var(--shadow); /* Bayangan bawah */
+}
+
+/* Container dalam header - Untuk layout logo dan menu */
+.header-container {
+  display: flex;          /* Gunakan flexbox */
+  justify-content: space-between; /* Logo kiri, menu kanan */
+  align-items: center;    /* Vertikal center */
+  max-width: 1200px;      /* Lebar maksimal */
+  margin: 0 auto;         /* Center horizontal */
+  padding: 0 2rem;        /* Padding kiri-kanan */
+}
+
+/* Logo - Text logo di kiri */
+.logo {
+  font-size: 1.5rem;      /* Ukuran font logo */
+  font-weight: 700;       /* Bold */
+  color: var(--white);    /* Warna putih */
+  text-decoration: none;  /* Hilangkan underline */
+}
+
+/* Navigasi - Menu horizontal */
+nav {
+  display: flex;          /* Flexbox untuk layout horizontal */
+  gap: 2rem;              /* Jarak antar link 2rem */
+}
+
+/* Link dalam navigasi */
+nav a {
+  color: var(--white);    /* Warna putih */
+  font-weight: 500;       /* Ketebalan medium */
+  padding: 0.5rem 1rem;   /* Padding untuk area klik lebih besar */
+  position: relative;     /* Untuk pseudo-element ::after */
+}
+
+/* Garis bawah saat hover - Menggunakan ::after pseudo-element */
+nav a::after {
+  content: '';            /* Konten kosong (harus ada untuk muncul) */
+  position: absolute;     /* Posisi absolut relatif ke parent */
+  bottom: 0;              /* Di bawah */
+  left: 0;                /* Dari kiri */
+  width: 0;               /* Lebar awal 0 (tidak terlihat) */
+  height: 2px;            /* Tinggi garis 2px */
+  background-color: var(--tertiary-green); /* Warna hijau muda */
+  transition: width 0.3s ease; /* Animasi lebar */
+}
+
+/* Saat hover, garis melebar penuh */
+nav a:hover::after {
+  width: 100%;            /* Lebar jadi 100% */
+}
+
+/* Link yang aktif (halaman saat ini) */
+nav a.active {
+  color: var(--tertiary-green); /* Warna hijau muda */
+}
+
+/* ==========================================
+   6. HAMBURGER MENU (Mobile)
+
+   PENJELASAN:
+   - Hamburger = Icon 3 garis untuk menu mobile
+   - display: none = Disembunyikan di desktop
+   - transform = Animasi rotasi untuk jadi X
+   ========================================== */
+
+/* Hamburger button - Hanya muncul di mobile */
+.hamburger {
+  display: none;          /* Sembunyikan di desktop */
+  flex-direction: column; /* Susunan vertikal */
+  cursor: pointer;        /* Cursor jadi pointer */
+  gap: 5px;               /* Jarak antar garis */
+  background: none;       /* Hilangkan background */
+  border: none;           /* Hilangkan border */
+}
+
+/* Garis-garis hamburger */
+.hamburger span {
+  width: 25px;            /* Lebar garis */
+  height: 3px;            /* Tinggi garis */
+  background-color: var(--white); /* Warna putih */
+  border-radius: 3px;     /* Sudut melengkung */
+  transition: all 0.3s ease; /* Animasi smooth */
+}
+
+/* Animasi jadi X - Garis pertama */
+.hamburger.active span:nth-child(1) {
+  /* Rotasi 45 derajat dan geser ke kanan-bawah */
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+/* Garis tengah hilang */
+.hamburger.active span:nth-child(2) {
+  opacity: 0;             /* Transparansi penuh (hilang) */
+}
+
+/* Garis ketiga rotasi jadi X */
+.hamburger.active span:nth-child(3) {
+  /* Rotasi -45 derajat dan geser */
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Mobile menu - Menu dropdown untuk mobile */
+.mobile-menu {
+  display: none;          /* Sembunyikan secara default */
+  position: absolute;     /* Posisi absolut */
+  top: 100%;              /* Di bawah header */
+  left: 0;                /* Dari kiri */
+  right: 0;               /* Sampai kanan (full width) */
+  background-color: var(--primary-green); /* Background hijau */
+  flex-direction: column; /* Susunan vertikal */
+  padding: 1rem 2rem;     /* Padding */
+  box-shadow: var(--shadow); /* Bayangan */
+}
+
+/* Mobile menu saat aktif (diklik) */
+.mobile-menu.active {
+  display: flex;          /* Tampilkan dengan flexbox */
+}
+
+/* Link dalam mobile menu */
+.mobile-menu a {
+  color: var(--white);    /* Warna putih */
+  padding: 0.75rem 0;     /* Padding atas-bawah */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Garis pembatas */
+}
+
+/* ==========================================
+   7. HERO SECTION
+
+   PENJELASAN:
+   - Hero = Banner besar di atas halaman
+   - linear-gradient = Gradasi warna dari kiri ke kanan
+   - min-height = Tinggi minimal
+   ========================================== */
+
+/* Hero section - Banner utama */
+.hero {
+  /* Gradasi dari hijau tua ke hijau terang */
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  color: var(--white);    /* Teks putih */
+  padding: 6rem 2rem;     /* Padding besar */
+  text-align: center;     /* Text di tengah */
+  min-height: 400px;      /* Tinggi minimal */
+  display: flex;          /* Flexbox */
+  flex-direction: column; /* Susunan vertikal */
+  justify-content: center;/* Vertikal center */
+  align-items: center;    /* Horizontal center */
+}
+
+/* Judul dalam hero */
+.hero h1 {
+  color: var(--white);    /* Warna putih (override default) */
+  margin-bottom: 1rem;    /* Jarak ke bawah */
+}
+
+/* Subtitle dalam hero */
+.hero .subtitle {
+  font-size: 1.25rem;     /* Ukuran lebih besar */
+  margin-bottom: 2rem;    /* Jarak ke bawah */
+  color: var(--light-green-bg); /* Warna hijau muda */
+}
+
+/* ==========================================
+   8. CONTAINER & SECTIONS
+
+   PENJELASAN:
+   - .container = Wrapper untuk membatasi lebar konten
+   - section = Bagian/blok konten
+   - max-width = Lebar maksimal
+   ========================================== */
+
+/* Container - Wrapper untuk membatasi lebar */
+.container {
+  max-width: 1200px;      /* Lebar maksimal 1200px */
+  margin: 0 auto;         /* Center horizontal */
+  padding: 0 2rem;        /* Padding kiri-kanan */
+}
+
+/* Section - Bagian konten */
+section {
+  padding: 4rem 0;        /* Padding atas-bawah */
+}
+
+/* Section dengan background berbeda */
+section.alternate {
+  background-color: var(--light-green-bg); /* Background hijau muda */
+}
+
+/* Section title - Judul section */
+.section-title {
+  text-align: center;     /* Text di tengah */
+  margin-bottom: 3rem;    /* Jarak ke bawah */
+}
+
+/* H2 dalam section title */
+.section-title h2 {
+  color: var(--primary-green); /* Warna hijau */
+  margin-bottom: 0.5rem;  /* Jarak ke bawah */
+}
+
+/* ==========================================
+   9. GRID LAYOUT
+
+   PENJELASAN:
+   - display: grid = Layout grid (baris dan kolom)
+   - grid-template-columns = Definisi kolom
+   - repeat() = Ulangi pola
+   - auto-fit = Otomatis atur jumlah kolom
+   - minmax() = Ukuran minimal dan maksimal
+   ========================================== */
+
+/* Grid container - Layout grid */
+.grid {
+  display: grid;          /* Gunakan CSS Grid */
+  gap: 2rem;              /* Jarak antar item */
+  margin-top: 2rem;       /* Jarak atas */
+}
+
+/* Grid 3 kolom - Otomatis responsive */
+.grid-3 {
+  /* repeat(auto-fit, ...) = Atur kolom otomatis
+     minmax(280px, 1fr) = Minimal 280px, maksimal sama rata
+     Akan otomatis jadi 1 kolom di mobile */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Grid 2 kolom */
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* ==========================================
+   10. CARD COMPONENT
+
+   PENJELASAN:
+   - Card = Kotak konten dengan shadow
+   - border-left = Garis kiri sebagai aksen
+   - transform = Transformasi (geser, rotasi, scale)
+   ========================================== */
+
+/* Card - Kotak konten */
+.card {
+  background-color: var(--white); /* Background putih */
+  border-radius: 8px;     /* Sudut melengkung */
+  padding: 2rem;          /* Padding dalam */
+  box-shadow: var(--shadow); /* Bayangan */
+  transition: all 0.3s ease; /* Animasi */
+  border-left: 4px solid var(--secondary-green); /* Garis kiri hijau */
+}
+
+/* Card saat di-hover */
+.card:hover {
+  box-shadow: var(--shadow-hover); /* Bayangan lebih gelap */
+  transform: translateY(-4px); /* Naik 4px */
+}
+
+/* Judul dalam card */
+.card h3 {
+  color: var(--primary-green); /* Warna hijau */
+  margin-bottom: 1rem;    /* Jarak ke bawah */
+}
+
+/* ==========================================
+   11. TEAM MEMBER CARDS
+
+   PENJELASAN:
+   - Komponen khusus untuk kartu anggota tim
+   - Foto, nama, ID, role, deskripsi
+   ========================================== */
+
+/* Container anggota tim */
+.team-member {
+  text-align: center;     /* Text di tengah */
+  background-color: var(--white); /* Background putih */
+  border-radius: 8px;     /* Sudut melengkung */
+  overflow: hidden;       /* Sembunyikan yang keluar */
+  box-shadow: var(--shadow); /* Bayangan */
+  transition: all 0.3s ease; /* Animasi */
+}
+
+/* Team member saat hover */
+.team-member:hover {
+  box-shadow: var(--shadow-hover); /* Bayangan lebih gelap */
+  transform: translateY(-8px); /* Naik lebih tinggi */
+}
+
+/* Area foto anggota */
+.team-member-photo {
+  width: 100%;            /* Lebar penuh */
+  height: 250px;          /* Tinggi tetap */
+  /* Gradasi hijau sebagai background default */
+  background: linear-gradient(135deg, var(--secondary-green), var(--tertiary-green));
+  display: flex;          /* Flexbox */
+  align-items: center;    /* Vertikal center */
+  justify-content: center;/* Horizontal center */
+  font-size: 3rem;        /* Ukuran emoji besar */
+  color: var(--white);    /* Warna putih */
+  overflow: hidden;       /* Sembunyikan yang keluar */
+}
+
+/* Foto dalam team-member-photo */
+.team-member-photo img {
+  width: 100%;            /* Lebar penuh */
+  height: 100%;           /* Tinggi penuh */
+  object-fit: cover;      /* Crop gambar agar pas */
+}
+
+/* Info anggota (nama, ID, role, deskripsi) */
+.team-member-info {
+  padding: 1.5rem;        /* Padding dalam */
+}
+
+/* Nama anggota tim */
+.team-member h3 {
+  color: var(--primary-green); /* Warna hijau */
+  margin-bottom: 0.5rem;  /* Jarak ke bawah */
+}
+
+/* Nomor ID Anggota */
+.team-member .member-id {
+  color: var(--text-light); /* Warna abu-abu */
+  font-size: 0.9rem;      /* Ukuran lebih kecil */
+  margin-bottom: 0.5rem;  /* Jarak ke bawah */
+  font-style: italic;     /* Gaya miring */
+  font-weight: 500;       /* Ketebalan sedang */
+}
+
+/* Role/Jabatan anggota */
+.team-member .role {
+  color: var(--text-light); /* Warna abu-abu */
+  font-weight: 600;       /* Tebal */
+  margin-bottom: 1rem;    /* Jarak ke bawah */
+}
+
+/* Paragraf deskripsi */
+.team-member p {
+  color: var(--text-light); /* Warna abu-abu */
+  font-size: 0.95rem;     /* Ukuran sedikit lebih kecil */
+}
+
+/* ==========================================
+   12. PROCESS STEPS (Langkah-langkah)
+
+   PENJELASAN:
+   - Layout untuk menampilkan step by step
+   - Nomor langkah di bulatan
+   ========================================== */
+
+/* Container langkah-langkah */
+.process-steps {
+  display: flex;          /* Flexbox */
+  flex-direction: column; /* Susunan vertikal */
+  gap: 2rem;              /* Jarak antar step */
+  margin-top: 2rem;       /* Jarak atas */
+}
+
+/* Satu langkah */
+.step {
+  display: flex;          /* Flexbox */
+  gap: 2rem;              /* Jarak antar element */
+  align-items: flex-start;/* Align ke atas */
+  padding: 2rem;          /* Padding dalam */
+  background-color: var(--white); /* Background putih */
+  border-radius: 8px;     /* Sudut melengkung */
+  box-shadow: var(--shadow); /* Bayangan */
+  transition: all 0.3s ease; /* Animasi */
+}
+
+/* Step saat hover */
+.step:hover {
+  box-shadow: var(--shadow-hover); /* Bayangan lebih gelap */
+}
+
+/* Step alternatif (urutan terbalik) */
+.step.alternate {
+  flex-direction: row-reverse; /* Nomor di kanan */
+}
+
+/* Nomor langkah (bulatan) */
+.step-number {
+  background-color: var(--primary-green); /* Background hijau */
+  color: var(--white);    /* Teks putih */
+  width: 80px;            /* Lebar bulatan */
+  height: 80px;           /* Tinggi bulatan */
+  border-radius: 50%;     /* Bulat penuh */
+  display: flex;          /* Flexbox */
+  align-items: center;    /* Vertikal center */
+  justify-content: center;/* Horizontal center */
+  font-size: 2rem;        /* Ukuran nomor */
+  font-weight: 700;       /* Bold */
+  flex-shrink: 0;         /* Tidak mengecil */
+}
+
+/* Konten langkah */
+.step-content h3 {
+  color: var(--primary-green); /* Warna hijau */
+  margin-bottom: 1rem;    /* Jarak ke bawah */
+}
+
+/* ==========================================
+   13. FOOTER
+
+   PENJELASAN:
+   - Footer di bagian bawah website
+   - Grid 3 kolom untuk info, navigasi, kontak
+   ========================================== */
+
+/* Footer - Bagian bawah website */
+footer {
+  background-color: var(--light-green-bg); /* Background hijau muda */
+  color: var(--text-dark); /* Teks gelap */
+  padding: 3rem 0 1rem;   /* Padding */
+  margin-top: 3rem;       /* Jarak atas */
+  border-top: 2px solid var(--secondary-green); /* Garis atas */
+}
+
+/* Konten footer (3 kolom) */
+.footer-content {
+  display: grid;          /* Grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 3 kolom otomatis */
+  gap: 2rem;              /* Jarak antar kolom */
+  margin-bottom: 2rem;    /* Jarak ke bawah */
+}
+
+/* Section dalam footer */
+.footer-section h4 {
+  color: var(--primary-green); /* Warna hijau */
+  margin-bottom: 1rem;    /* Jarak ke bawah */
+}
+
+/* List dalam footer */
+.footer-section ul {
+  list-style: none;       /* Hilangkan bullet */
+}
+
+/* Item list */
+.footer-section ul li {
+  margin-bottom: 0.5rem;  /* Jarak ke bawah */
+}
+
+/* Footer bottom (copyright) */
+.footer-bottom {
+  text-align: center;     /* Text di tengah */
+  padding-top: 2rem;      /* Padding atas */
+  border-top: 1px solid var(--secondary-green); /* Garis atas */
+  color: var(--text-light);/* Warna abu */
+}
+
+/* ==========================================
+   14. RESPONSIVE DESIGN
+
+   PENJELASAN:
+   - @media = Media query untuk layar berbeda
+   - max-width: 767px = Untuk layar mobile (≤767px)
+   - Atur ulang layout untuk mobile
+   ========================================== */
+
+/* TABLET: Layar 768px - 1024px */
+@media (max-width: 1024px) {
+  nav {
+    gap: 1.5rem;          /* Kurangi gap */
+  }
+}
+
+/* MOBILE: Layar ≤767px */
+@media (max-width: 767px) {
+  /* Container lebih kecil */
+  .container {
+    padding: 0 1rem;      /* Padding lebih kecil */
+  }
+
+  /* Header container */
+  .header-container {
+    padding: 0 1rem;      /* Padding lebih kecil */
+  }
+
+  /* Sembunyikan menu desktop */
+  nav {
+    display: none;        /* Hilangkan menu horizontal */
+  }
+
+  /* Tampilkan hamburger */
+  .hamburger {
+    display: flex;        /* Tampilkan hamburger */
+  }
+
+  /* Hero lebih kecil */
+  .hero {
+    padding: 3rem 1rem;   /* Padding lebih kecil */
+    min-height: 300px;    /* Tinggi minimal lebih kecil */
+  }
+
+  /* Section padding lebih kecil */
+  section {
+    padding: 2rem 0;      /* Padding lebih kecil */
+  }
+
+  /* Step jadi vertikal */
+  .step {
+    flex-direction: column !important; /* Paksa vertikal */
+    gap: 1.5rem;          /* Gap lebih kecil */
+  }
+
+  /* Nomor step lebih kecil */
+  .step-number {
+    width: 60px;          /* Lebar lebih kecil */
+    height: 60px;         /* Tinggi lebih kecil */
+    font-size: 1.5rem;    /* Font lebih kecil */
+  }
+
+  /* Grid jadi 1 kolom */
+  .grid,
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr; /* 1 kolom penuh */
+  }
+
+  /* Footer jadi 1 kolom */
+  .footer-content {
+    grid-template-columns: 1fr; /* 1 kolom */
+  }
+}
+
+/* ==========================================
+   15. UTILITY CLASSES
+
+   PENJELASAN:
+   - Class helper untuk styling cepat
+   - Bisa dipakai di mana saja
+   ========================================== */
+
+/* Text alignment */
+.text-center {
+  text-align: center;     /* Text di tengah */
+}
+
+/* Margin top */
+.mt-2 { margin-top: 2rem; }
+
+/* Margin bottom */
+.mb-2 { margin-bottom: 2rem; }
+
+/* ===========================================
+   SELESAI!
+
+   CARA EDIT:
+   1. Cari section yang mau diubah
+   2. Edit value (angka/warna)
+   3. Save file
+   4. Refresh browser (Ctrl+F5)
+
+   TIPS:
+   - Ubah warna di :root untuk ganti theme
+   - Ubah ukuran font di body untuk zoom in/out
+   - Ubah max-width di .container untuk lebar konten
+   =========================================== */
