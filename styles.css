@@ -104,62 +104,82 @@ a:hover {
 /* ==========================================
    5. HEADER & NAVIGATION
    ========================================== */
-header {
-  background-color: var(--primary-green);
-  color: var(--white);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: var(--shadow);
+/* --- NAVBAR MODERN --- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 12px 0;
+    z-index: 999;
+    background: rgba(20, 80, 20, 0.5); 
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--white);
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-nav {
-  display: flex;
-  gap: 2rem;
+.logo img {
+    width: 40px;
+    height: 40px;
 }
 
-nav a {
-  color: var(--white);
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  position: relative;
+.logo span {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
 }
 
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--tertiary-green);
-  transition: width 0.3s ease;
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
 }
 
-nav a:hover::after {
-  width: 100%;
+.nav-links a {
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s;
 }
 
-nav a.active {
-  color: var(--tertiary-green);
+/* Animasi bawah garis saat hover */
+.nav-links a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #FFD15C;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease-in-out;
 }
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Tautan terakhir (Kontak) dibuat beda warna */
+/* .nav-links .highlight {
+    color: #c6e99e;
+    font-weight: 600;
+} */
+
 
 /* Hamburger Menu */
 .hamburger {
@@ -213,24 +233,22 @@ nav a.active {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ==========================================
-   6. HERO SECTION
-   ========================================== */
 .hero {
-  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
-  color: var(--white);
-  padding: 6rem 2rem;
-  text-align: center;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    height: 100vh;
+    background: url("assets/hutan.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
 }
+
 
 .hero h1 {
   color: var(--white);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .hero .subtitle {
@@ -244,6 +262,7 @@ nav a.active {
    ========================================== */
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -272,7 +291,10 @@ section.alternate {
 .grid {
   display: grid;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 2rem auto 0;
+  max-width: 1200px; 
+  padding: 0 1rem;
+  justify-content: center;
 }
 
 .grid-3 {
@@ -281,6 +303,7 @@ section.alternate {
 
 .grid-2 {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
 }
 
 .card {
@@ -290,6 +313,7 @@ section.alternate {
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
   border-left: 4px solid var(--secondary-green);
+  margin: 0 auto;
 }
 
 .card:hover {
@@ -519,3 +543,39 @@ footer {
 
 .mt-2 { margin-top: 2rem; }
 .mb-2 { margin-bottom: 2rem; }
+
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(
+        rgba(0,0,0,0),
+        rgba(0,0,0,0.7)
+    );
+    pointer-events: none;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+}
+
+.video-step {
+    margin: 3rem auto;
+    max-width: 900px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.video-step iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    display: block;
+}

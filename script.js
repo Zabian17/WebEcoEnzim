@@ -72,7 +72,6 @@ function initEventListeners() {
     }
   });
 
-  // Handle window resize
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 768) {
       closeMobileMenu();
@@ -80,10 +79,12 @@ function initEventListeners() {
   });
 }
 
-/**
- * Initialize on page load
- */
 document.addEventListener('DOMContentLoaded', () => {
   setActiveNavLink();
   initEventListeners();
+});
+
+window.addEventListener("scroll", () => {
+    const hero = document.querySelector(".hero");
+    hero.style.opacity = 1 - window.scrollY / 1600;
 });
