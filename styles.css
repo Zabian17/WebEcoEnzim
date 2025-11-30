@@ -1,0 +1,521 @@
+/* ============================================
+   Website Edukasi EcoEnzim
+   Main Stylesheet - styles.css
+   ============================================ */
+
+/* ==========================================
+   1. COLOR VARIABLES & ROOT SETTINGS
+   ========================================== */
+:root {
+  --primary-green: #1B5E20;
+  --secondary-green: #4CAF50;
+  --tertiary-green: #8BC34A;
+  --light-green-bg: #F1F8E9;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --white: #FFFFFF;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================
+   2. GLOBAL STYLES & RESET
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   3. TYPOGRAPHY
+   ========================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--secondary-green);
+}
+
+/* ==========================================
+   4. BUTTONS
+   ========================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: 2px solid var(--primary-green);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: var(--secondary-green);
+  border-color: var(--secondary-green);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ==========================================
+   5. HEADER & NAVIGATION
+   ========================================== */
+header {
+  background-color: var(--primary-green);
+  color: var(--white);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--white);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--tertiary-green);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: var(--tertiary-green);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  background: none;
+  border: none;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--white);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-green);
+  flex-direction: column;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  color: var(--white);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   6. HERO SECTION
+   ========================================== */
+.hero {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  color: var(--white);
+  padding: 6rem 2rem;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--light-green-bg);
+}
+
+/* ==========================================
+   7. CONTAINER & SECTIONS
+   ========================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+section.alternate {
+  background-color: var(--light-green-bg);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================
+   8. CARDS & GRIDS
+   ========================================== */
+.grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--secondary-green);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   9. TEAM CARDS
+   ========================================== */
+.team-member {
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.team-member:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-8px);
+}
+
+.team-member-photo {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(135deg, var(--secondary-green), var(--tertiary-green));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--white);
+  overflow: hidden;
+  position: relative;
+}
+
+.team-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.team-member-info {
+  padding: 1.5rem;
+}
+
+/* Nama anggota tim - Styling untuk nama yang ditampilkan */
+.team-member h3 {
+  color: var(--primary-green); /* Warna hijau untuk nama */
+  margin-bottom: 0.5rem; /* Jarak ke bawah 0.5rem */
+}
+
+/* Nomor ID Anggota - Styling untuk nomor identitas anggota */
+.team-member .member-id {
+  color: var(--text-light); /* Warna abu-abu untuk ID */
+  font-size: 0.9rem; /* Ukuran font lebih kecil */
+  margin-bottom: 0.5rem; /* Jarak ke bawah */
+  font-style: italic; /* Gaya miring untuk membedakan */
+  font-weight: 500; /* Ketebalan sedang */
+}
+
+/* Role/Jabatan anggota - Styling untuk posisi/peran */
+.team-member .role {
+  color: var(--text-light); /* Warna abu-abu */
+  font-weight: 600; /* Tebal untuk menonjol */
+  margin-bottom: 1rem; /* Jarak ke bawah */
+}
+
+/* ==========================================
+   10. PROCESS STEPS
+   ========================================== */
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.step {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.step.alternate {
+  flex-direction: row-reverse;
+}
+
+.step-number {
+  background-color: var(--primary-green);
+  color: var(--white);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-content h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   11. FOOTER
+   ========================================== */
+footer {
+  background-color: var(--light-green-bg);
+  color: var(--text-dark);
+  padding: 3rem 0 1rem;
+  margin-top: 3rem;
+  border-top: 2px solid var(--secondary-green);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--secondary-green);
+  color: var(--text-light);
+}
+
+/* ==========================================
+   12. RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 1024px) {
+  nav {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header-container {
+    padding: 0 1rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+    min-height: 300px;
+  }
+
+  section {
+    padding: 2rem 0;
+  }
+
+  .step {
+    flex-direction: column !important;
+    gap: 1.5rem;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .grid,
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================
+   13. UTILITY CLASSES
+   ========================================== */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
