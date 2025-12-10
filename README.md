@@ -39,3 +39,25 @@ WebEcoEnzim/
 │   └── img # isi place holder kontak
 │
 │── README.md
+
+---
+
+## ▶️ Cara Menjalankan Project
+1. Download atau clone repository ini
+2. Buka folder project
+3. Klik dua kali pada file `index.html`
+4. Website otomatis terbuka di browser
+
+---
+
+## 👨‍💻 Kontributor
+Project ini dikembangkan oleh tim untuk keperluan pembelajaran dan edukasi.
+
+---
+
+## 📜 Lisensi
+Project ini bersifat **open-source** dan dapat digunakan untuk keperluan edukasi.
+
+---
+
+✨ Terima kasih telah menggunakan WebEcoEnzim!
