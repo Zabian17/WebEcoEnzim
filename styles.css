@@ -474,6 +474,7 @@ footer {
   }
 
   .hero {
+    height: auto;
     padding: 3rem 1rem;
     min-height: 300px;
   }
