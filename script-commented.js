@@ -386,3 +386,10 @@ window.addEventListener('pageshow', () => {
      button.addEventListener('click', myNewFeature);
    }
    =========================================== */
+
+
+/* Agar background hutan dapat menggunakan fade out saat discroll kebawah*/
+   window.addEventListener("scroll", () => {
+    const hero = document.querySelector(".hero");
+    hero.style.opacity = 1 - window.scrollY / 1600;
+});
